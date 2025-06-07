@@ -14,8 +14,8 @@ cd ai-blog-flask-app
 ### 2. Create and Activate a Virtual Environment
 
 ```bash
-python3 -m venv ai-blog-flask
-source ai-blog-flask/bin/activate
+python3 -m venv ai-blog-flask-env
+source ai-blog-flask-env/bin/activate
 ```
 
 ### 3. Install Dependencies
