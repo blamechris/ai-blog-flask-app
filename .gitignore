@@ -3,9 +3,15 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Virtual environments
 env/
 venv/
 ai-blog-flask-env/
+.ai-blog-flask-env/
+ENV/
+env.bak/
+.venv/
 
 # Environment variables
 .env
