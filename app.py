@@ -75,26 +75,26 @@ def home():
     time_remaining = next_run - now
 
     return f"""
-<h2>AI Blog Flask App is running!</h2>
-<p>Next scheduled job runs in: <strong id="timer">{str(time_remaining).split('.')[0]}</strong></p>
-<p>Use <code>/generate?keyword=YOUR_KEYWORD</code> to generate a blog post.</p>
-<script>
-let seconds = {int(time_remaining.total_seconds())};
-function updateTimer() {{
-    if (seconds > 0) {{
-        seconds--;
-        let hrs = Math.floor(seconds / 3600);
-        let mins = Math.floor((seconds % 3600) / 60);
-        let secs = seconds % 60;
-        document.getElementById('timer').textContent =
-            hrs.toString().padStart(2, '0') + ':' +
-            mins.toString().padStart(2, '0') + ':' +
-            secs.toString().padStart(2, '0');
+    <h2>AI Blog Flask App is running!</h2>
+    <p>Next scheduled job runs in: <strong id="timer">{str(time_remaining).split('.')[0]}</strong></p>
+    <p>Use <code>/generate?keyword=YOUR_KEYWORD</code> to generate a blog post.</p>
+    <script>
+    let seconds = {int(time_remaining.total_seconds())};
+    function updateTimer() {{
+        if (seconds > 0) {{
+            seconds--;
+            let hrs = Math.floor(seconds / 3600);
+            let mins = Math.floor((seconds % 3600) / 60);
+            let secs = seconds % 60;
+            document.getElementById('timer').textContent =
+                hrs.toString().padStart(2, '0') + ':' +
+                mins.toString().padStart(2, '0') + ':' +
+                secs.toString().padStart(2, '0');
+        }}
     }}
-}}
-setInterval(updateTimer, 1000);
-</script>
-"""
+    setInterval(updateTimer, 1000);
+    </script>
+    """
 
 if __name__ == '__main__':
     app.run(debug=True)  # Set debug=False in production!

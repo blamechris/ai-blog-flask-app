@@ -1,5 +1,5 @@
 Flask
 flask-limiter
-openai
+openai==0.28
 apscheduler
 python-dotenv

@@ -20,7 +20,6 @@ def generate_blog(keyword: str, seo_metrics: str, aff_link: str = "https://examp
     Returns:
         str: Generated blog content, or an error message if generation fails.
     """
-    # Dynamic prompt using keyword and SEO metrics
     fakePrompt = f"""
     <html>
         <body>
@@ -31,18 +30,19 @@ def generate_blog(keyword: str, seo_metrics: str, aff_link: str = "https://examp
     </html>
     """
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
+        client = openai.OpenAI(api_key=openai.api_key)
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": fakePrompt}],
             temperature=0.8
         )
-        # Verify response structure
-        if 'choices' in response and len(response['choices']) > 0:
-            content = response['choices'][0]['message']['content']
+        # The new API returns response.choices[0].message.content
+        if response.choices and len(response.choices) > 0:
+            content = response.choices[0].message.content
             return content.replace("{{AFF_LINK_1}}", aff_link)
         else:
             raise ValueError("Unexpected response from OpenAI API.")
-    except openai.error.OpenAIError as e:
+    except openai.OpenAIError as e:
         print(f"OpenAI API error: {e}")
         return "An error occurred while generating the blog content."
     except Exception as e:
